@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <form method="post" action="{{ url_for('admin') }}">
+        <label for="order_code">Enter Order Code:</label>
+        <input type="text" name="order_code" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if order_details %}
+        <h2>Order Details for Code: {{ order_code }}</h2>
+        <ul>
+            {% for item in order_details %}
+                <li>{{ item.name }} - ${{ item.price }} x {{ item.quantity }} = ${{ item.price * item.quantity }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Total Amount: ${{ total_amount }}</h3>
+    {% endif %}
+</body>
+</html>

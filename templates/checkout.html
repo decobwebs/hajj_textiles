@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="static/style.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+</head>
+<body>
+    <h1>Checkout</h1>
+    <p>Your order code: <strong>{{ order_code }}</strong></p>
+    <p>Send this code to the admin via WhatsApp or email.</p>
+
+    <h2>Cart Details</h2>
+    <ul>
+        {% for id, quantity in cart.items() %}
+            <li>{{ products[id].name }} - ${{ products[id].price }} x {{ quantity }} = ${{ products[id].price * quantity }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Total Amount: ${{ total_amount }}</h3>
+
+    <a href="{{ url_for('clear_session') }}">Return to Products</a>
+</body>
+</html>

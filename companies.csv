@@ -1,0 +1,7 @@
+company_name,title,subtitle,image,product_name,price
+CompanyA,House for Sale,Beautiful home,1.,Product A,250000
+CompanyA,Apartment for Rent,City living,2.,Product B,1500
+CompanyB,Office Space,Modern workspace,imageB1.jpg,Product C,300000
+CompanyB,Warehouse,Large storage space,imageB2.jpg,Product D,500000
+CompanyC,Storefront,Prime location,imageC1.jpg,Product E,750000
+CompanyC,Shopping Center,Multiple retailers,imageC2.jpg,Product F,2000000
