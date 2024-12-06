@@ -364,10 +364,13 @@ def checkout():
         + f"Ids= {','.join(id_list)},"
     )
 
-    whatsapp_link = (
-        f"https://wa.me/2348155114430?text={order_message.replace(' ', '%20').replace('\\n', '%0A')}"
+    # Perform replacements outside the f-string
+    formatted_message = order_message.replace(' ', '%20').replace('\n', '%0A')
 
-    )
+    # Use the processed string in the f-string
+    whatsapp_link = f"https://wa.me/2348155114430?text={formatted_message}"
+
+    # Redirect to the WhatsApp link
     return redirect(whatsapp_link)
 
 
