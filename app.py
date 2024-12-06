@@ -364,7 +364,6 @@ def checkout():
         + f"Ids= {','.join(id_list)},"
     )
 
-    # WhatsApp API link
     whatsapp_link = (
         f"https://wa.me/2348155114430?text={order_message.replace(' ', '%20').replace('\n', '%0A')}"
     )
