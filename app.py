@@ -365,7 +365,8 @@ def checkout():
     )
 
     whatsapp_link = (
-        f"https://wa.me/2348155114430?text={order_message.replace(' ', '%20').replace('\n', '%0A')}"
+        f"https://wa.me/2348155114430?text={order_message.replace(' ', '%20').replace(r'\n', '%0A')}"
+
     )
     return redirect(whatsapp_link)
 
