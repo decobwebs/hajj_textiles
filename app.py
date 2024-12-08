@@ -10,13 +10,13 @@ from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
-SESSION_TYPE = 'filesystem'
+app.config['SESSION_TYPE'] = 'filesystem'  # Example session type
 app.config.from_object(__name__)
 Session(app)
 app.secret_key = 'your_secret_key'
 ORDER_DIR = 'orders'
 os.makedirs(ORDER_DIR, exist_ok=True)
-app.config['SESSION_COOKIE_NAME'] = 'my_session_cookie'
+app.config['SESSION_COOKIE_NAME'] = 'your_cookie_name'  # Define the session cookie name explicitly
 
 
 # Flask-Mail configuration
