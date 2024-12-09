@@ -68,7 +68,7 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                    <a href="cart.html" class="dropdown-item active">Cart</a>
+
                                     <a href="chackout.html" class="dropdown-item">Chackout</a>
                                     <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                     <a href="404.html" class="dropdown-item">404 Page</a>
@@ -78,10 +78,7 @@
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                            <a href="#" class="position-relative me-4 my-auto">
-                                <i class="fa fa-shopping-bag fa-2x"></i>
-                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
-                            </a>
+
                             <a href="#" class="my-auto">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
@@ -113,16 +110,36 @@
         <!-- Modal Search End -->
 
 
-        <!-- Single Page Header start -->
-        <div class="container-fluid page-header py-5">
-            <h1 class="text-center text-white display-6">Cart</h1>
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Cart</li>
-            </ol>
+        <!-- Single Page Header Start -->
+
+    <!-- Banner Section Start-->
+        <div class="container-fluid banner bg-secondary my-5">
+            <br>
+            <br>
+            <br>
+            <div class="container py-5">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="py-4">
+                            <h1 class="display-3 text-white">Hajj Textiles</h1>
+                            <p class="fw-normal display-3 text-dark mb-4">in Our Store</p>
+                            <p class="mb-4 text-dark">Discover the finest Nigerian-made natives and vibrant textiles that tell a story of heritage and style.</p>
+                            <a href="#" class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="position-relative">
+                            <br>
+                            <br>
+                            <img src="static/img/shop.jpg" class="img-fluid w-100 rounded" alt="">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- Single Page Header End -->
+        <!-- Banner Section End -->
+
 
 
         <!-- Cart Page Start -->
@@ -142,47 +159,61 @@
                         </thead>
                         <tbody>
                             {% for id, quantity in cart.items() %}
-<tr>
-    <th scope="row">
-        <div class="d-flex align-items-center">
-            {% if products[id].name.startswith("ROYAL PICASSA") %}
-            <img src="{{ url_for('static', filename='img/ROYAL_PICASSA' + products[id].no + '.jpg') }}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="{{ products[id].name }}">
-            {% else %}
-            <img src="{{ url_for('static', filename='img/Spray_' + products[id].no + '.jpg') }}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="{{ products[id].name }}">
-            {% endif %}
-        </div>
-    </th>
-    <td>
-        <p class="mb-0 mt-4">{{ products[id].name }}</p>
-    </td>
-    <td>
-        <p class="mb-0 mt-4">{{ products[id].price }} ₦</p>
-    </td>
-    <td>
-        <div class="input-group quantity mt-4" style="width: 100px;">
-            <div class="input-group-btn">
-                <button class="btn btn-sm btn-minus rounded-circle bg-light border" onclick="changeQuantity('minus', '{{ id }}')">
-                    <i class="fa fa-minus"></i>
-                </button>
-            </div>
-            <input type="text" class="form-control form-control-sm text-center border-0" value="{{ quantity }}" id="quantity-{{ id }}" data-price="{{ products[id].price }}">
-            <div class="input-group-btn">
-                <button class="btn btn-sm btn-plus rounded-circle bg-light border" onclick="changeQuantity('plus', '{{ id }}')">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </div>
-        </div>
-    </td>
-    <td>
-        <p class="mb-0 mt-4" id="total-{{ id }}">Total: {{ products[id].price * quantity }} ₦</p>
-    </td>
-    <td>
-        <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="removeFromCart('{{ id }}')">
-            <i class="fa fa-times text-danger"></i>
-        </button>
-    </td>
-</tr>
-{% endfor %}
+                            <tr>
+                                <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    {% if products[id].name.startswith("ROYAL PICASSA") %}
+                                    <img src="{{ url_for('static', filename='img/ROYAL_PICASSA' + products[id].no + '.jpg') }}"
+                                         class="img-fluid me-5 rounded-circle"
+                                         style="width: 80px; height: 80px;"
+                                         alt="{{ products[id].name }}">
+                            
+                                    {% elif products[id].name.startswith("Agbada Style") %}
+                                    <img src="{{ url_for('static', filename='img/agbada_' + products[id].no + '.jpg') }}"
+                                         class="img-fluid me-5 rounded-circle"
+                                         style="width: 80px; height: 80px;"
+                                         alt="{{ products[id].name }}">
+                            
+                                    {% else %}
+                                    <img src="{{ url_for('static', filename='img/Spray_' + products[id].no + '.jpg') }}"
+                                         class="img-fluid me-5 rounded-circle"
+                                         style="width: 80px; height: 80px;"
+                                         alt="{{ products[id].name }}">
+                                    {% endif %}
+                                </div>
+                            </th>
+
+                                <td>
+                                    <p class="mb-0 mt-4">{{ products[id].name }}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{{ products[id].price }} ₦</p>
+                                </td>
+                                <td>
+                                    <div class="input-group quantity mt-4" style="width: 100px;">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" onclick="changeQuantity('minus', '{{ id }}')">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm text-center border-0" value="{{ quantity }}" id="quantity-{{ id }}" data-price="{{ products[id].price }}">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border" onclick="changeQuantity('plus', '{{ id }}')">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4" id="total-{{ id }}">Total: {{ products[id].price * quantity }} ₦</p>
+                                </td>
+                                <td>
+                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="removeFromCart('{{ id }}')">
+                                        <i class="fa fa-times text-danger"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
 
 
                         </tbody>
@@ -234,21 +265,23 @@
                     <div class="row g-4">
                         <div class="col-lg-3">
                             <a href="#">
-                                <h1 class="text-primary mb-0">Fruitables</h1>
+                                <h1 class="text-primary mb-0">Hajj Textiles</h1>
                                 <p class="text-secondary mb-0">Fresh products</p>
                             </a>
                         </div>
                         <div class="col-lg-6">
-                            <div class="position-relative mx-auto">
-                                <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Your Email">
-                                <button type="submit" class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0;">Subscribe Now</button>
-                            </div>
+                            <form action="/subscribe" method="post">
+                                <div class="position-relative mx-auto">
+                                    <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="email" name="email" placeholder="Your Email" required>
+                                    <button type="submit" class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0;">Subscribe Now</button>
+                                </div>
+                            </form>
                         </div>
+
                         <div class="col-lg-3">
                             <div class="d-flex justify-content-end pt-3">
                                 <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-youtube"></i></a>
                                 <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
@@ -258,41 +291,17 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-item">
                             <h4 class="text-light mb-3">Why People Like us!</h4>
-                            <p class="mb-4">typesetting, remaining essentially unchanged. It was 
+                            <p class="mb-4">typesetting, remaining essentially unchanged. It was
                                 popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
                             <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <div class="d-flex flex-column text-start footer-item">
-                            <h4 class="text-light mb-3">Shop Info</h4>
-                            <a class="btn-link" href="">About Us</a>
-                            <a class="btn-link" href="">Contact Us</a>
-                            <a class="btn-link" href="">Privacy Policy</a>
-                            <a class="btn-link" href="">Terms & Condition</a>
-                            <a class="btn-link" href="">Return Policy</a>
-                            <a class="btn-link" href="">FAQs & Help</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="d-flex flex-column text-start footer-item">
-                            <h4 class="text-light mb-3">Account</h4>
-                            <a class="btn-link" href="">My Account</a>
-                            <a class="btn-link" href="">Shop details</a>
-                            <a class="btn-link" href="">Shopping Cart</a>
-                            <a class="btn-link" href="">Wishlist</a>
-                            <a class="btn-link" href="">Order History</a>
-                            <a class="btn-link" href="">International Orders</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
                         <div class="footer-item">
                             <h4 class="text-light mb-3">Contact</h4>
-                            <p>Address: 1429 Netus Rd, NY 48247</p>
-                            <p>Email: Example@gmail.com</p>
-                            <p>Phone: +0123 4567 8910</p>
-                            <p>Payment Accepted</p>
-                            <img src="static/img/payment.png" class="img-fluid" alt="">
+                            <p>6A Hinderer Street Apapa</p>
+                            <p>Email: cobweb784@gmail.com</p>
+                            <p>Phone: +234 815 5114 430</p>
                         </div>
                     </div>
                 </div>

@@ -142,6 +142,10 @@
                                     <img src="static/img/Spray_5.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
                                     <a href="#" class="btn px-4 py-2 text-white rounded">K WOOL</a>
                                 </div>
+                                <div class="carousel-item rounded">
+                                    <img src="static/img/ROYAL_PICASSA17.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
+                                    <a href="#" class="btn px-4 py-2 text-white rounded">Royal Picassa</a>
+                                </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -213,230 +217,129 @@
         <!-- Featurs Section End -->
 
 
-        <!-- Fruits Shop Start-->
         <div class="container-fluid fruite py-5">
-        <div class="container py-5">
-            <div class="tab-class text-center">
-                <div class="row g-4">
-                    <div class="col-lg-4 text-start">
-                        <h1>Our Special Fabrics</h1>
-                    </div>
-                    <div class="col-lg-8 text-end">
-                        <ul class="nav nav-pills d-inline-flex text-center mb-5">
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill active" href="/?category=all">
-                                    <span class="text-dark" style="width: 130px;">All Products</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex py-2 m-2 bg-light rounded-pill" href="/?category=natives">
-                                    <span class="text-dark" style="width: 130px;">Natives</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" href="/?category=fabrics">
-                                    <span class="text-dark" style="width: 130px;">Fabrics</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" href="/?category=agbaga">
-                                    <span class="text-dark" style="width: 130px;">Agbaga</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" href="/?category=caps">
-                                    <span class="text-dark" style="width: 130px;">Caps</span>
-                                </a>
-                            </li>
-                        </ul>
+    <div class="container py-5">
+        <div class="tab-class text-center">
+            <div class="row g-4">
+                {% for id, product in products.items() %}
+                {% if id in ['5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'] %}
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="rounded position-relative fruite-item">
+                        <div class="fruite-img">
+                            <img src="{{ url_for('static', filename='img/Spray_' + product.no + '.jpg') }}"
+                                 class="img-fluid w-100 rounded-top"
+                                 alt="{{ product.name }}"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#imageModal-{{ id }}"
+                                 onclick="showImage('{{ url_for('static', filename='img/Spray_' + product.no + '.jpg') }}', '{{ id }}')">
+                        </div>
+                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fabric</div>
+                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                            <h4>{{ product.name }}</h4>
+                            <p>All colors will be available</p>
+                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                <p class="text-dark fs-5 fw-bold mb-0">₦{{ product.price }}</p>
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart-button" onclick="addToCart('{{ id }}')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tab-content">
-                    <div id="tab-1" class="tab-pane fade show p-0 active">
-                        <div class="row g-4">
-                            {% for id, product in products.items() %}
-                            {% if id in ['5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'] %}
-                            <div class="col-md-6 col-lg-4 col-xl-3">
-                                <div class="rounded position-relative fruite-item">
-                                    <div class="fruite-img">
-                                        <img src="{{ url_for('static', filename='img/Spray_' + product.no + '.jpg') }}" class="img-fluid w-100 rounded-top" alt="{{ product.name }}">
-                                    </div>
-                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fabric</div>
-                                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                        <h4>{{ product.name }}</h4>
-                                        <p>All colors will be available</p>
-                                        <div class="d-flex justify-content-between flex-lg-wrap">
-                                            <p class="text-dark fs-5 fw-bold mb-0">₦{{ product.price }}</p>
-                                            <button class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart-button" onclick="addToCart('{{ id }}')">
-                                                <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                <!-- Modal for Each Image -->
+                <div class="modal fade" id="imageModal-{{ id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body p-0">
+                                <img src="{{ url_for('static', filename='img/Spray_' + product.no + '.jpg') }}" id="modalImage-{{ id }}" class="img-fluid w-100 rounded" alt="{{ product.name }}">
                             </div>
-                            {% endif %}
-                            {% endfor %}
+                            <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                     </div>
                 </div>
-                <div class="tab-content">
-                    <div id="tab-2" class="tab-pane fade show p-0 active">
-                        <div class="row g-4">
-                            {% for id, product in products.items() %}
-                            {% if id in ['17', '18', '19', '20', '21', '22'] %}
-                            <div class="col-md-6 col-lg-4 col-xl-3">
-                                <div class="rounded position-relative fruite-item">
-                                    <div class="fruite-img">
-                                        <img src="{{ url_for('static', filename='img/ROYAL_PICASSA' + product.no + '.jpg') }}" class="img-fluid w-100 rounded-top" alt="{{ product.name }}">
-                                    </div>
-                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fabric</div>
-                                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                        <h4>{{ product.name }}</h4>
-                                        <p>All colors will be available</p>
-                                        <div class="d-flex justify-content-between flex-lg-wrap">
-                                            <p class="text-dark fs-5 fw-bold mb-0">₦{{ product.price }}</p>
-                                            <button class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart-button" onclick="addToCart('{{ id }}')">
-                                                <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
-        </div>
-        <!-- Fruits Shop End-->
+    </div>
+</div>
+
+<!-- Inline JavaScript -->
+<script>
+    function showImage(imageUrl, id) {
+        // Set the modal image's src dynamically
+        document.getElementById('modalImage-' + id).src = imageUrl;
+    }
+</script>
 
 
 
 
-        <!-- Vesitable Shop Start-->
-        <div class="container-fluid vesitable py-5">
+
+        <!-- Vegetable Shop Start -->
+        <div class="container-fluid vegetable-shop py-5">
             <div class="container py-5">
-                <h1 class="mb-0">Fresh Organic Vegetables</h1>
+                <h1 class="text-center mb-5">Our Elegant Agbada Styles for Every Occasion</h1>
                 <div class="owl-carousel vegetable-carousel justify-content-center">
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="static/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                        <div class="p-4 rounded-bottom">
-                            <h4>Parsely</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">₦4.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                    {% for id, product in products.items() %}
+                        {% if id in ['23', '24', '25', '26', '27', '28', '29', '30'] %}
+                            <div class="card vegetable-item shadow rounded position-relative"
+                                 style="width: 300px; height: 420px; margin: 0 15px;">
+                                <div class="vegetable-img position-relative overflow-hidden" style="height: 60%;">
+                                    <img src="{{ url_for('static', filename='img/agbada_' + product.no + '.jpg') }}"
+                                         class="img-fluid w-100 h-100 object-fit-cover clickable-image"
+                                         alt="{{ product.name }}"
+                                         data-image="{{ url_for('static', filename='img/agbada_' + product.no + '.jpg') }}"
+                                         data-bs-toggle="modal"
+                                         data-bs-target="#imageModal"
+                                         onclick="showImage(this)">
+                                    <span class="badge bg-secondary text-white position-absolute"
+                                          style="top: 10px; left: 10px;">Fabric</span>
+                                </div>
+                                <div class="card-body text-center p-4">
+                                    <h5 class="card-title mb-3 text-dark">{{ product.name }}</h5>
+                                    <p class="card-text text-muted mb-4">All colors will be available</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="fs-5 fw-bold text-primary mb-0">₦{{ product.price }}</p>
+                                        <button class="btn btn-outline-primary rounded-pill px-4 add-to-cart-button"
+                                                onclick="addToCart('{{ id }}')">
+                                            <i class="fa fa-shopping-bag me-2"></i> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="static/img/vegetable-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                        <div class="p-4 rounded-bottom">
-                            <h4>Parsely</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">₦4.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="static/img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                        <div class="p-4 rounded-bottom">
-                            <h4>Banana</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">₦7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="static/img/vegetable-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                        <div class="p-4 rounded-bottom">
-                            <h4>Bell Papper</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">₦7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="static/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                        <div class="p-4 rounded-bottom">
-                            <h4>Potatoes</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">₦7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="static/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                        <div class="p-4 rounded-bottom">
-                            <h4>Parsely</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">₦7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="static/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                        <div class="p-4 rounded-bottom">
-                            <h4>Potatoes</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">₦7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="static/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                        <div class="p-4 rounded-bottom">
-                            <h4>Parsely</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">₦7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        <!-- Vesitable Shop End -->
+
+        <!-- Modal for Image Preview -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <img src="" id="modalImage" class="img-fluid w-100 rounded" alt="Enlarged Image">
+                    </div>
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inline JavaScript -->
+        <script>
+            function showImage(imageElement) {
+                // Get the image URL from the data attribute
+                const imageUrl = imageElement.getAttribute('data-image');
+                // Set the modal image's src attribute
+                document.getElementById('modalImage').src = imageUrl;
+            }
+        </script>
+        <!-- Vegetable Shop End -->
+
+
+
 
 
         <!-- Banner Section Start-->

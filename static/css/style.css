@@ -495,3 +495,89 @@
 }
 /*** Footer End ***/
 
+/* General Card Styling */
+.vegetable-item {
+    width: 100%;
+    max-width: 300px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.vegetable-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.vegetable-img {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #eee;
+}
+
+.vegetable-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.vegetable-img img.animated-image:hover {
+    transform: scale(1.1); /* Subtle zoom-in effect */
+}
+
+/* Badge Styling */
+.badge {
+    padding: 0.5em 1em;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Add to Cart Button */
+.add-to-cart-button {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Body Styling */
+.card-body {
+    padding: 1.5em;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Animation: Fade-in on page load */
+.vegetable-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
