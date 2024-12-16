@@ -222,7 +222,7 @@
         <div class="tab-class text-center">
             <div class="row g-4">
                 {% for id, product in products.items() %}
-                {% if id in ['5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'] %}
+                {% if id in ['5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16',] %}
                 <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
@@ -253,6 +253,69 @@
                         <div class="modal-content">
                             <div class="modal-body p-0">
                                 <img src="{{ url_for('static', filename='img/Spray_' + product.no + '.jpg') }}" id="modalImage-{{ id }}" class="img-fluid w-100 rounded" alt="{{ product.name }}">
+                            </div>
+                            <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Inline JavaScript -->
+<script>
+    function showImage(imageUrl, id) {
+        // Set the modal image's src dynamically
+        document.getElementById('modalImage-' + id).src = imageUrl;
+    }
+</script>
+
+
+        <!-- Features Section Start -->
+<div class="container-fluid fruite py-5">
+    <div class="container py-5">
+        <div class="tab-class text-center">
+            <div class="row g-4">
+                {% for id, product in products.items() %}
+                {% if id in ['17', '18', '19', '20', '21', '22'] %}
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="rounded position-relative fruite-item">
+                        <div class="fruite-img">
+                            <!-- Ensure consistent image path -->
+                            <img src="{{ url_for('static', filename='img/ROYAL_PICASSA' + product.no + '.jpg') }}"
+                                 class="img-fluid w-100 rounded-top"
+                                 alt="{{ product.name }}"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#imageModal-{{ id }}"
+                                 onclick="showImage('{{ url_for('static', filename='img/ROYAL_PICASSA' + product.no + '.jpg') }}', '{{ id }}')">
+                        </div>
+                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fabric</div>
+                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                            <h4>{{ product.name }}</h4>
+                            <p>All colors will be available</p>
+                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                <p class="text-dark fs-5 fw-bold mb-0">₦{{ product.price }}</p>
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart-button" onclick="addToCart('{{ id }}')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal for Each Image -->
+                <div class="modal fade" id="imageModal-{{ id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body p-0">
+                                <!-- Use the same image path format for the modal -->
+                                <img src="{{ url_for('static', filename='img/ROYAL_PICASSA' + product.no + '.jpg') }}"
+                                     id="modalImage-{{ id }}"
+                                     class="img-fluid w-100 rounded"
+                                     alt="{{ product.name }}">
                             </div>
                             <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
