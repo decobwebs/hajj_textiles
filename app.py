@@ -6,6 +6,7 @@ import csv
 import os
 import uuid
 import time
+from products import Lace,products, ROYAL_PICASSA1, MISTER_AND_POLO
 from datetime import datetime, timedelta
 
 
@@ -35,45 +36,6 @@ ADMIN_EMAIL = "cobwebb784@gmail.com"
 SUBSCRIPTION_FILE = os.path.join(ORDER_DIR, 'subscriptions.csv')
 
 
-
-# Sample product list
-ROYAL_PICASSA1= {
-    '1': {'name': 'ROYAL PICASSA1', 'price': 1000.00, 'no': '1'},
-    '2': {'name': 'ROYAL PICASSA2', 'price': 1100.00, 'no': '2'},
-    '3': {'name': 'ROYAL PICASSA3', 'price': 1200.00, 'no': '3'},
-    '4': {'name': 'ROYAL PICASSA4', 'price': 1300.00, 'no': '4'},
-    '5': {'name': 'ROYAL PICASSA5', 'price': 1400.00, 'no': '5'},
-    '6': {'name': 'ROYAL PICASSA6', 'price': 1500.00, 'no': '6'},
-}
-
-products = {
-    '5': {'name': 'AUDIENCE BY VENETEY ', 'price': 8800.00, 'no': '5'},
-    '6': {'name': 'AUDIENCE BY VENETEY ', 'price': 8800.00, 'no': '6'},
-    '7': {'name': 'AUDIENCE BY VENETEY ', 'price': 8800.00, 'no': '7'},
-    '8': {'name': 'AUDIENCE BY VENETEY ', 'price': 8800.00, 'no': '8'},
-    '9': {'name': 'K WOOL ', 'price': 6000.00, 'no': '9'},
-    '10': {'name': 'K WOOL ', 'price': 6000.00, 'no': '10'},
-    '11': {'name': 'K WOOL ', 'price': 6000.00, 'no': '11'},
-    '12': {'name': 'K WOOL ', 'price': 6000.00, 'no': '12'},
-    '13': {'name': 'K WOOL ', 'price': 6000.00, 'no': '13'},
-    '14': {'name': 'K WOOL ', 'price': 6000.00, 'no': '14'},
-    '15': {'name': 'K WOOL ', 'price': 6000.00, 'no': '15'},
-    '16': {'name': 'K WOOL ', 'price': 6000.00, 'no': '16'},
-    '17': {'name': 'ROYAL PICASSA1', 'price': 5000.00, 'no': '17'},
-    '18': {'name': 'ROYAL PICASSA2', 'price': 5000.00, 'no': '18'},
-    '19': {'name': 'ROYAL PICASSA3', 'price': 5000.00, 'no': '19'},
-    '20': {'name': 'ROYAL PICASSA4', 'price': 5000.00, 'no': '20'},
-    '21': {'name': 'ROYAL PICASSA5', 'price': 5000.00, 'no': '21'},
-    '22': {'name': 'ROYAL PICASSA6', 'price': 5000.00, 'no': '22'},
-    '23': {'name': 'Agbada Style 1', 'price': 90000.00, 'no': '23'},
-    '24': {'name': 'Agbada Style 2', 'price': 100000.00, 'no': '24'},
-    '25': {'name': 'Agbada Style 3', 'price': 120000.00, 'no': '25'},
-    '26': {'name': 'Agbada Style 4', 'price': 120000.00, 'no': '26'},
-    '27': {'name': 'Agbada Style 5', 'price': 110000.00, 'no': '27'},
-    '28': {'name': 'Agbada Style 6', 'price': 100000.00, 'no': '28'},
-    '29': {'name': 'Agbada Style 7', 'price': 100000.00, 'no': '29'},
-    '30': {'name': 'Agbada Style 8', 'price': 100000.00, 'no': '30'},
-}
 
 
 # Ensure the CSV file exists
